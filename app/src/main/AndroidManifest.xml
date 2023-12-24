@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicPlayer"
         tools:targetApi="31">
+        <service
+            android:name=".MediaPlayerService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

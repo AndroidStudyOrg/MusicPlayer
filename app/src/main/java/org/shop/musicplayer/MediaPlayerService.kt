@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.drawable.Icon
 import android.media.MediaPlayer
 import android.os.Build
@@ -14,6 +15,7 @@ import androidx.annotation.RequiresApi
 
 class MediaPlayerService : Service() {
     private var mediaPlayer: MediaPlayer? = null
+    private val receiver = LowBatteryReceiver()
 
     override fun onBind(intent: Intent): IBinder? {
         // Bind 서비스가 아닌 포그라운드 서비스이기에 onBind는 null을 반환한다
@@ -25,6 +27,7 @@ class MediaPlayerService : Service() {
         super.onCreate()
 
         createNotificationChannel()
+        initReceiver()
 
         // 아이콘 생성
         val playIcon = Icon.createWithResource(baseContext, R.drawable.baseline_play_arrow_24)
@@ -98,6 +101,14 @@ class MediaPlayerService : Service() {
         startForeground(100, notification)
     }
 
+    private fun initReceiver() {
+        // 이 때 intent-filter를 등록할 수 있다. Manifest에서도 가능
+        val filter = IntentFilter().apply {
+            addAction(Intent.ACTION_BATTERY_LOW)
+        }
+        registerReceiver(receiver, filter)
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel() {
         val channel =
@@ -145,6 +156,7 @@ class MediaPlayerService : Service() {
             release()
         }
         mediaPlayer = null
+        unregisterReceiver(receiver)
         super.onDestroy()
     }
 }

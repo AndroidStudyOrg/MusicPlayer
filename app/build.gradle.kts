@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "org.shop.musicplayer"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "org.shop.musicplayer"

@@ -24,6 +24,11 @@
 ## Notification (알림)
   - 상태표시줄을 아래로 내렸을 때 나오는 알림창들
   - 포그라운드 서비스는 Notification이 필수
-- PendingIntent
-- Intent Flag
+  - PendingIntent
+      - Intent 객체 주변을 감싸는 래퍼
+      - 외부 애플리케이션에 권한을 허가하여 안에 들어있는 Intent를 마치 본인 앱의 자체 프로세스에서 실행하는 것처럼 사용하게 하는 것
+      - 본 프로젝트에서는 알림으로 어떠한 작업을 수행할 때 Intent가 실행되도록 선언
+  - Intent Flag
+      - Notification에서 알림 자체를 클릭했을 때 앱을 어떻게 실행할지
+      - 본 프로젝트에서는 flag = Intent.FLAG_ACTIVITY_SINGLE_TOP 사용. 즉, 실행됐던 Activity를 그대로 재사용 하겠다
 ## BroadcastReceiver

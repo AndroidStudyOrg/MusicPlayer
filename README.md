@@ -31,4 +31,6 @@
   - Intent Flag
       - Notification에서 알림 자체를 클릭했을 때 앱을 어떻게 실행할지
       - 본 프로젝트에서는 flag = Intent.FLAG_ACTIVITY_SINGLE_TOP 사용. 즉, 실행됐던 Activity를 그대로 재사용 하겠다
-## BroadcastReceiver
+## BroadcastReceiver (4대 컴포넌트 중 하나)
+  - Android 앱에서 게시, 구독 디자인 패턴과 유사한 브로드캐스트 메시지를 받거나 보낼 수 있다
+  - 비행기 탑승 모드가 켜져있는지 아닌지, 배터리가 충분한지 아닌지 등을 받아올 수 있다
